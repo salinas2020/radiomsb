@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Rádio</title>
+    <style>
+        /* Estilos básicos para manter o player centralizado */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 310px;
+        }
+
+        /* Estilo para a imagem do logotipo */
+        img {
+            max-width: 300px; /* Ajuste a largura conforme desejado */
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Imagem do logotipo -->
+    <img src="https://i.postimg.cc/bvSz3YDF/logoradio.png" alt="Logotipo da Rádio">
+
+    <!-- Player de áudio -->
+    <audio controls autoplay>
+        <source src="https://stream.zeno.fm/eriqm9txjgwvv" type="audio/mp3">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+
+<marquee> Seja bem-vindo a RÁDIO MSB- A rádio que toca Você! <br></marquee>
+
+<!-- Botão para ir para o WhatsApp -->
+    <button onclick="window.location.href='https://wa.me/5591988425036'">Pedido de Música via WhatsApp</button>
+</body>
+
+</html>
