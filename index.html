@@ -19,7 +19,8 @@
         .logo {
             width: 100%; /* Largura ajustada para 100% da tela */
             height: auto; /* Altura automática para manter a proporção da imagem */
-            margin-bottom: 10px; /* Espaçamento abaixo da logomarca */
+            margin: 0 auto 10px; /* Centraliza a logomarca e adiciona um espaço abaixo dela */
+            display: block; /* Garante que a imagem ocupe o espaço total disponível */
         }
 
         /* Estilo para o iframe */
@@ -37,7 +38,7 @@
     <img src="https://i.postimg.cc/bvSz3YDF/logoradio.png" alt="Logomarca da Rádio" class="logo">
 
     <!-- Player de Rádio incorporado com iframe -->
-    <iframe src="https://player.srvsh.com.br/player-topo-html5/8682/4c7cf3" frameborder="0"></iframe>
+    <iframe src="https://player.srvsh.com.br/player-topo-html5/8682/4c7cf3" frameborder="0" width="100%" height="65"></iframe>
 </body>
 
 </html>
