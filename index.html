@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="theme-color" content="#08298a">
+<title>RADIO MSB</title>
+
+<link href="css/style.css" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icone192.png">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="js/lunaradio-animado.js"></script>
+<style>
+html,body{font-family:"Open Sans",sans-serif;height:100%;margin:0;display:flex;flex-direction:column;color:#272829;}
+</style>
+</head>
+
+<body>
+<div style="height:100%">
+<button type="button" class="mobile-nav-toggle"><i class="fas fa-bars"></i></button>
+<header id="header">
+<nav class="nav-menu">
+<ul>
+<li><a target="_blank" href="https://www.seduc.pa.gov.br/portal/boletim_online/"><i class="fab fa-google-play"></i> <span>Boletim do Aluno</span></a></li
+<li><a target="_blank" href="http://www4.seduc.pa.gov.br/diario_classe/"><i class="fab fa-google-play"></i> <span>Diário de Classe</span></a></li
+<li><a target="_blank" href="https://www.instagram.com/escola.msb/"><i class="fab fa-instagram-square" alt="Instagram"></i> <span>Instagram</span></a></li
+<li><a href="https://api.whatsapp.com/send?phone=+5591988425036&text=Olá, ouça a rádio" target="_blank"><i class="fab fa-whatsapp-square" alt="Whatsapp"></i>
+<span>PEDIDO DE MUSICA</span></a></li>
+</ul>
+</nav>
+</header>
+
+<div id="player"></div>
+<script>
+$("#player").lunaradio({
+userinterface: "big", 
+backgroundcolor: "rgba(9,15,25,0.8)",
+fontcolor: "#ffffff",
+hightlightcolor: "#000000", 
+fontname: "Saira Condensed", 
+googlefont: "Saira+Condensed:wght@100", 
+fontratio: "0.4", 
+radioname: "RADIO MSB", 
+scroll: "true", 
+coverimage: "img/logo.png",
+onlycoverimage: "false",
+coverstyle: "animated",
+usevisualizer: "real", 
+visualizertype: "2", 
+itunestoken: "1000lIPN", 
+metadatatechnic: "fallback",
+corsproxy: "",
+usestreamcorsproxy: "false",
+streamurl: "https://stream.zeno.fm/eriqm9txjgwvv",
+streamtype: "zeno",
+idzeno: "eriqm9txjgwvv",
+icecastmountpoint: "", 
+shoutcastpath: "",
+shoutcastid: "1", 
+metadatainterval: "26000", 
+volume: "100",
+debug: "false",
+autoplay: "true",
+displayliveicon: "true",
+visualizeropacity: "1.0",
+multicolorvisualizer: "true",
+color1: "#00FF00",
+color2: "#ffff00",
+color3: "#FF1F6F",
+color4: "#FF1F6F",
+});
+</script>
+
+<div class="background_hora"><div id="relogio">15:00:05</div></div>
+<script>
+function reloj() {
+  let elementoID = document.getElementById('relogio');
+  let horalocal = new Date().toLocaleTimeString('es');
+  elementoID.innerHTML = horalocal;
+}
+setInterval(reloj, 1000);
+</script>
+
+<footer style="display:grid;align-content:end">
+  <div style="background-color:#222;color:#fff;text-align:center;padding:10px"> 
+    &copy; Copyright 2025 - <a href="https://studiobala.com.br">Professor Jcarlos Matemática Produções</a> 
+  </div>
+</footer>
+
+<script>
+$(".mobile-nav-toggle").click(function(){
+  $("body").toggleClass("mobile-nav-active");
+  $(".mobile-nav-toggle i").toggleClass("fa-bars fa-times");
+});
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+
+let deferredPrompt;
+const installContainer = document.createElement('div');
+installContainer.style.position = "fixed";
+installContainer.style.top = "0";
+installContainer.style.left = "0";
+installContainer.style.width = "100%";
+installContainer.style.height = "100%";
+installContainer.style.background = "rgba(0,0,0,0.6)";
+installContainer.style.display = "flex";
+installContainer.style.justifyContent = "center";
+installContainer.style.alignItems = "center";
+installContainer.style.zIndex = "10000";
+installContainer.style.flexDirection = "column";
+installContainer.style.color = "#fff";
+installContainer.style.fontSize = "18px";
+installContainer.style.fontFamily = "sans-serif";
+installContainer.style.textAlign = "center";
+installContainer.innerHTML = `
+  <div style="background: #08298a; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px #000;">
+    <p>Instale a Rádio MSB na tela inicial para acesso rápido.</p>
+    <button id="install-btn" style="padding: 10px 20px; background: #00c853; color: white; border: none; font-size: 16px; border-radius: 5px; cursor: pointer;">Instalar Agora</button>
+    <br/><br/>
+    <button id="close-btn" style="padding: 5px 10px; background: transparent; color: white; border: 1px solid white; font-size: 14px; border-radius: 5px; cursor: pointer;">Fechar</button>
+  </div>
+`;
+installContainer.style.display = "none";
+document.body.appendChild(installContainer);
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installContainer.style.display = "flex";
+
+  document.getElementById('install-btn').addEventListener('click', () => {
+    installContainer.style.display = "none";
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => {
+      deferredPrompt = null;
+    });
+  });
+
+  document.getElementById('close-btn').addEventListener('click', () => {
+    installContainer.style.display = "none";
+  });
+});
+</script>
+</div>
+</body>
+</html>
